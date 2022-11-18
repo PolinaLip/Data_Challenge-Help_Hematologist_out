@@ -1,6 +1,6 @@
 # Data_Challenge---Help_Hematologist_out
 
-Data challenge with a goal to find domain transfer solutions for blood-cell classification.
+Data challenge with a goal to find domain transfer (aka Domain Generalization problem) solutions for blood-cell classification.
 
 ## Datasets
 
