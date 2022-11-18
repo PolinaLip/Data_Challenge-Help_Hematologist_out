@@ -19,8 +19,26 @@ The images contained in each class of our dataset were randomly divided into a t
 
 ## DatasetGenerator class
 
+DatasetGenerator class prepairs images to analysis:
+1. reshapes all images to one size
+2. duplicates each image to the wanted amount (to enrich the database of images): I made 12 duplicates of each image
+3. applies circle mask to the images to focus on the signal belonged to the cell (it gave the best leap in F1 of prediction)
 
+## Transformations
+- Brightness Normalisation (percentile=90, threshold=0.98)
+- Fix Blurred Images with Laplace operator (sharpness=10.0, threshold=100)
+- MyRandomRotation (degrees=\[10, 30, 45, 60, 90, 120, 160\])
+- transforms.ColorJitter (hue=.08),
+- transforms.ColorJitter (saturation=0.7)
+- transforms.RandomResizedCrop
+- transforms.RandomHorizontalFlip(),
+- transforms.RandomVerticalFlip()
 
-The best leap in F1 of prediction was achieved by using circle mask to focus on the signal belonged to the cell, which we need to classify.  
+## Model
+The model used in the study is a 18-layer residual net (resnet18) with pretrained weights.
 
-The model used in the study is resnet18 with pretrained weights.
+## Model evaluation
+Besides F1, it was a good idea to add an entropy estimate (but a better estimation metric is still required)
+
+## Notes
+I also tried to change weights based on the biological distributions of cells from Matek dataset. But it did not help to predict cell classes better.
